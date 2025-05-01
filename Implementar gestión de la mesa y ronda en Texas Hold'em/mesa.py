@@ -35,7 +35,7 @@ class Mesa:
         ronda.ejecutar_ronda()
 
         # Evaluar las manos de los jugadores y determinar el ganador
-        ganador = comparar_manos(self.jugadores)
+        ganador = comparar_manos(self.jugadores, flop + turn + river)  # Cartas comunes (flop, turn, river)
         print(f"El ganador de la mano es: {ganador}")
 
         # Verificar cuantos jugadores estan activos para ver si el juego termina
