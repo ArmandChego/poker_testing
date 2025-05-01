@@ -1,3 +1,4 @@
+from mazo import Mazo
 from dealer import Dealer
 from ronda_apuestas import RondaApuestas
 
@@ -7,14 +8,32 @@ class Mesa:
         self.dealer = Dealer(jugadores)
         self.small_blind = small_blind
         self.big_blind = big_blind
+        self.mazo = Mazo()
 
     def jugar_mano(self):
+        # Rotar el botón y asignar las ciegas
         self.dealer.rotar_boton()
         self.dealer.asignar_ciegas(self.small_blind, self.big_blind)
-        self.dealer.repartir_cartas()
+        
+        # Barajar el mazo antes de repartir las cartas
+        self.mazo.barajar()
+
+        # Repartir las cartas a los jugadores
+        self.mazo.repartir_cartas_jugadores(self.jugadores)
+        
+        # Repartir las cartas comunes (flop, turn, river)
+        flop, turn, river = self.mazo.repartir_cartas_comunes()
+
+        # Mostrar las cartas comunes en cada fase
+        print(f"Flop: {flop}")
+        print(f"Turn: {turn}")
+        print(f"River: {river}")
+        
+        # Ejecutar la ronda de apuestas
         ronda = RondaApuestas(self.jugadores)
         ronda.ejecutar_ronda()
 
+        # Verificar cuantos jugadores estan activos para ver si el juego termina
         jugadores_en_pie = [j for j in self.jugadores if j.en_ronda and j.activo]
         if len(jugadores_en_pie) == 1:
             print(f"Ganador inmediato: {jugadores_en_pie[0].nombre}")
