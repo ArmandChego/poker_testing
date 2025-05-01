@@ -1,6 +1,7 @@
 from mazo import Mazo
 from dealer import Dealer
 from ronda_apuestas import RondaApuestas
+from evaluador import comparar_manos 
 
 class Mesa:
     def __init__(self, jugadores, small_blind=10, big_blind=20):
@@ -32,6 +33,10 @@ class Mesa:
         # Ejecutar la ronda de apuestas
         ronda = RondaApuestas(self.jugadores)
         ronda.ejecutar_ronda()
+
+        # Evaluar las manos de los jugadores y determinar el ganador
+        ganador = comparar_manos(self.jugadores)
+        print(f"El ganador de la mano es: {ganador}")
 
         # Verificar cuantos jugadores estan activos para ver si el juego termina
         jugadores_en_pie = [j for j in self.jugadores if j.en_ronda and j.activo]
