@@ -1,4 +1,5 @@
 from collections import Counter
+from jugador import Jugador 
 
 # Función que evalúa el tipo de mano
 def evaluar_mano(cartas):
@@ -40,11 +41,12 @@ def evaluar_mano(cartas):
         return "Carta Alta"
 
 # Función para comparar las manos y determinar al ganador
-def comparar_manos(jugadores):
+def comparar_manos(jugadores, cartas_comunes):
     manos = {}
     
+    # Evaluar la mano de cada jugador
     for jugador in jugadores:
-        mano = jugador.obtener_cartas_completas(jugador.cartas_comunes)  # Obtener las cartas completas
+        mano = jugador.obtener_cartas_completas(cartas_comunes)  # Obtener las cartas propias + comunes
         mano_evaluada = evaluar_mano(mano)  # Evaluar la mano del jugador
         manos[jugador.nombre] = mano_evaluada
     
