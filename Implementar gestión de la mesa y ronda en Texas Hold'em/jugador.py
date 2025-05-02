@@ -22,5 +22,4 @@ class Jugador:
         self.en_ronda = self.activo
 
     def obtener_cartas_completas(self, cartas_comunes):
-        return self.cartas + cartas_comunes # Combina las cartas del jugador con las cartas comunes
-    
+        return self.cartas + cartas_comunes

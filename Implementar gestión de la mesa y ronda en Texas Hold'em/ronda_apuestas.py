@@ -9,7 +9,7 @@ class RondaApuestas:
             cambios = False
             for jugador in jugadores_activos:
                 if jugador.apuesta_actual < self.apuesta_maxima:
-                    accion = self.obtener_accion(jugador)
+                    accion = self.obtener_accion(jugador)  # Este es el punto donde la IA o jugador toman decisiones
                     if accion == "call":
                         diferencia = self.apuesta_maxima - jugador.apuesta_actual
                         jugador.apostar(diferencia)

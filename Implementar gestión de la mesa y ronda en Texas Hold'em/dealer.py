@@ -23,3 +23,16 @@ class Dealer:
         palos = ['♠', '♥', '♦', '♣']
         valores = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         return random.choice(valores) + random.choice(palos)
+
+    def gestionar_fases(self, fase):
+        if fase == "preflop":
+            self.repartir_cartas()  # Reparte las cartas a los jugadores
+        elif fase == "flop":
+            # Reparte las cartas comunes (flop)
+            pass
+        elif fase == "turn":
+            # Reparte la carta común del turn
+            pass
+        elif fase == "river":
+            # Reparte la carta común del river
+            pass
