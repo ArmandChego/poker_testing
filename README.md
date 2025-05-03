@@ -1,5 +1,21 @@
-Integrantes
-1- ArmandChego - Manchego Puma Armando Jesus | 2022225751
-4- FrostGZ - Manrique Silva Ricardo Gabriel | 2022223811
-3- tokki9 - Mansilla Titto Paolo Jesús | 2022223851
-4- cometadraco - Velarde Zegarra Joaquin Nicolay | 2022251251
+# Integrantes del Proyecto
+
+Este es el equipo de trabajo para el proyecto:
+
+## Miembros
+
+1. **ArmandChego**  
+   - **Nombre**: Manchego Puma Armando Jesús  
+   - **Código**: 2022225751
+
+2. **FrostGZ**  
+   - **Nombre**: Manrique Silva Ricardo Gabriel  
+   - **Código**: 2022223811
+
+3. **tokki9**  
+   - **Nombre**: Mansilla Titto Paolo Jesús  
+   - **Código**: 2022223851
+
+4. **cometadraco**  
+   - **Nombre**: Velarde Zegarra Joaquin Nicolay  
+   - **Código**: 2022251251
