@@ -8,10 +8,18 @@ class Jugador:
         self.en_ronda = True
 
     def apostar(self, cantidad):
-        cantidad = min(cantidad, self.fichas)
-        self.fichas -= cantidad
-        self.apuesta_actual += cantidad
-        return cantidad
+        if not isinstance(cantidad, (int, float)) or cantidad <= 0 or cantidad == float('inf'):
+            print(f"{self.nombre}: cantidad inválida para apostar: {cantidad}")
+            return 0
+        
+        if self.fichas <= 0:
+            print(f"{self.nombre}: no tiene fichas para apostar.")
+            return 0
+        
+        cantidad_a_apostar = min(cantidad, self.fichas)
+        self.fichas -= cantidad_a_apostar
+        self.apuesta_actual += cantidad_a_apostar
+        return cantidad_a_apostar
 
     def retirarse(self):
         self.en_ronda = False
