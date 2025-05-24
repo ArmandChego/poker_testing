@@ -9,11 +9,25 @@ class Dealer:
         self.indice_boton = (self.indice_boton + 1) % len(self.jugadores)
 
     def asignar_ciegas(self, small_blind, big_blind):
-        sb = (self.indice_boton + 1) % len(self.jugadores)
-        bb = (self.indice_boton + 2) % len(self.jugadores)
-        apuesta_sb = self.jugadores[sb].apostar(small_blind)
-        apuesta_bb = self.jugadores[bb].apostar(big_blind)
-        return { "small_blind": sb, "big_blind": bb }
+        sb_index = (self.indice_boton + 1) % len(self.jugadores)
+        bb_index = (self.indice_boton + 2) % len(self.jugadores)
+
+        jugador_sb = self.jugadores[sb_index]
+        jugador_bb = self.jugadores[bb_index]
+
+        if jugador_sb.fichas < small_blind:
+            print(f"{jugador_sb.nombre} no tiene suficientes fichas para la ciega pequeña.")
+            apuesta_sb = jugador_sb.apostar(jugador_sb.fichas)  # Apuesta todo lo que tiene
+        else:
+            apuesta_sb = jugador_sb.apostar(small_blind)
+
+        if jugador_bb.fichas < big_blind:
+            print(f"{jugador_bb.nombre} no tiene suficientes fichas para la ciega grande.")
+            apuesta_bb = jugador_bb.apostar(jugador_bb.fichas)  # Apuesta todo lo que tiene
+        else:
+            apuesta_bb = jugador_bb.apostar(big_blind)
+
+        return {"small_blind": sb_index, "big_blind": bb_index}
 
     def repartir_cartas(self):
         for jugador in self.jugadores:
@@ -26,13 +40,10 @@ class Dealer:
 
     def gestionar_fases(self, fase):
         if fase == "preflop":
-            self.repartir_cartas()  # Reparte las cartas a los jugadores
+            self.repartir_cartas()
         elif fase == "flop":
-            # Reparte las cartas comunes (flop)
             pass
         elif fase == "turn":
-            # Reparte la carta común del turn
             pass
         elif fase == "river":
-            # Reparte la carta común del river
             pass
