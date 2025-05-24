@@ -26,12 +26,12 @@ class Mesa:
         # Repartir las cartas comunes (flop, turn, river)
         flop, turn, river = self.mazo.repartir_cartas_comunes()
 
-        # Aseguramos que sean listas antes de concatenarlas
-        if isinstance(flop, list) and isinstance(turn, list) and isinstance(river, list):
-            self.cartas_comunes = flop + turn + river  # Almacena las cartas comunes
-        else:
-            print("Error: Las cartas comunes no son listas.")
-            return  # Salir del juego si ocurre un error
+        # Validar que las listas no estén vacías para evitar errores
+        if not flop or not turn or not river:
+            print("Error: No hay cartas suficientes para continuar la mano.")
+            return
+
+        self.cartas_comunes = flop + turn + river  # Almacena las cartas comunes
 
         print(f"Flop: {flop}")
         ronda.ejecutar_ronda()
@@ -59,18 +59,26 @@ class Mesa:
             self.ronda_apuestas()
             self.fase = "flop"
         elif self.fase == "flop":
-            flop, turn, river = self.mazo.repartir_cartas_comunes()  # Repartir cartas comunes (flop, turn, river)
+            flop, turn, river = self.mazo.repartir_cartas_comunes()
+            # Validar que no estén vacíos antes de asignar
+            if not flop or not turn or not river:
+                print("No hay cartas suficientes para la fase flop.")
+                return
             self.cartas_comunes = flop + turn + river
             print(f"Flop: {flop}")
             self.ronda_apuestas()
             self.fase = "turn"
         elif self.fase == "turn":
-            # Ya no se reparten cartas, solo se debe manejar la fase
-            print(f"Turn: {self.cartas_comunes[3]}")
+            if len(self.cartas_comunes) > 3:
+                print(f"Turn: {self.cartas_comunes[3]}")
+            else:
+                print("No hay carta para Turn.")
             self.ronda_apuestas()
             self.fase = "river"
         elif self.fase == "river":
-            # Ya no se reparten cartas, solo se debe manejar la fase
-            print(f"River: {self.cartas_comunes[4]}")
+            if len(self.cartas_comunes) > 4:
+                print(f"River: {self.cartas_comunes[4]}")
+            else:
+                print("No hay carta para River.")
             self.ronda_apuestas()
             self.fase = "final"
